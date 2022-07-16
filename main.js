@@ -10,6 +10,10 @@ window.onload = function(){
         //         gravity: { y: 200 }
         //     }
         // },
+        parent: bodyId,
+        dom: {
+            createContainer: true
+        },
         scene: [Scene1, Scene2]
     };
 

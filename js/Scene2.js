@@ -36,7 +36,11 @@ class Scene2 extends Phaser.Scene {
 
         rect.setInteractive().on('pointerup', (pointer, localX, localY, event) => {
           if (!rect.isMarked) {
-            rect.isMarked = 'X';
+            rect.isMarked = {
+              type: 'X',
+              row: j,
+              col: i
+            };
 
             let text = this.add.text(position.x, position.y, "X", { font: "25px Arial", fill: "yellow" });
             text.x -= text.width / 2;
