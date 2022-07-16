@@ -2,7 +2,7 @@ window.onload = function(){
     var config = {
         type: Phaser.AUTO,
         width: 800,
-        height: 600,
+        height: 800,
         backgroundColor: 0x000000,  
         // physics: {
         //     default: 'arcade',
