@@ -61,8 +61,19 @@ class Scene2 extends Phaser.Scene {
     this.bgEndgame.x = this.sys.canvas.width / 2;
     this.bgEndgame.y = this.sys.canvas.height / 2;
     this.textReplay = this.add.text(20, 20, "REPLAY", { font: "50px Arial", fill: '#ff0000' });
-    this.textReplay.setPosition(this.bgEndgame.x - this.textReplay.width / 2, this.bgEndgame.y - this.textReplay.height / 2);
+    this.textReplay.setOrigin(0.5)
+    this.textReplay.setPosition(this.bgEndgame.x, this.bgEndgame.y);
     this.textWinner = this.add.text(20, 20, '', { font: "50px Arial", fill: '#ffff00' });
+    this.textWinner.setOrigin(0.5)
+
+    this.tweens.add({
+      targets: this.textWinner,
+      scale: 0,
+      ease: 'Sine.easeInOut',
+      duration: 1000,
+      repeat: -1,
+      yoyo: true,
+    })
 
     this.showPopupEndGame(false);
 
@@ -129,7 +140,7 @@ class Scene2 extends Phaser.Scene {
 
             this.detectWinStatus(curMarker, i, j);
 
-            console.log(i, j)
+            // console.log(i, j)
           }
 
         });
@@ -148,8 +159,6 @@ class Scene2 extends Phaser.Scene {
       ranRow = Phaser.Math.Between(0, BOARD_ROWS - 1);
       ranCol = Phaser.Math.Between(0, BOARD_COLS - 1);
     } while (this.listOfRects[ranRow][ranCol].isMarked)
-    console.log('')
-    console.log(ranRow, ranCol);
     this.listOfRects[ranRow][ranCol].isMarked = true;
     let wallRect = this.add.rectangle(ranRow * TILE_SIZE + TILE_SIZE / 2, ranCol * TILE_SIZE + TILE_SIZE / 2, TILE_SIZE, TILE_SIZE, 0x9966ff);
     this.wallGroup.add(wallRect);
@@ -245,7 +254,7 @@ class Scene2 extends Phaser.Scene {
         this.textReplay.disableInteractive();
       })
       this.textWinner.text = this.isUser1Turn ? window.username_2 + " WON!!!" : window.username_1 + " WON!!!"
-      this.textWinner.setPosition(this.bgEndgame.x - this.textWinner.width / 2, this.textReplay.y - 100);
+      this.textWinner.setPosition(this.bgEndgame.x, this.textReplay.y - 100);
   
       this.showPopupEndGame();
     }, 1500);
