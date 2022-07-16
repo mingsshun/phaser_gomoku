@@ -7,7 +7,7 @@ class Scene1 extends Phaser.Scene {
   }
   create() {
     this.add.text(20, 20, "Loading game...");
-    this.scene.start("playGame");
+    // this.scene.start("playGame");
     
     let element = this.add.dom(this.sys.canvas.width / 2, this.sys.canvas.height / 2).createFromCache('nameForm');
     element.addListener('click');
